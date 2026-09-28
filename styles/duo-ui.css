@@ -1,0 +1,1149 @@
+/* ====================================================================
+   FLOWPILOT OPERATIONS - DUOLINGO UI DESIGN SYSTEM
+   Authentic Duolingo Aesthetics: 3D chunky tactile buttons,
+   vibrant palette, rounded cards, streak counters & playful mascot.
+   ==================================================================== */
+
+:root {
+  /* Duolingo Brand Palette */
+  --duo-green: #58CC02;
+  --duo-green-dark: #46A302;
+  --duo-green-light: #D7FFB8;
+  
+  --duo-blue: #1CB0F6;
+  --duo-blue-dark: #1899D6;
+  --duo-blue-light: #DDF4FF;
+  
+  --duo-yellow: #FFC800;
+  --duo-yellow-dark: #E5A500;
+  --duo-yellow-light: #FFF5D2;
+  
+  --duo-red: #FF4B4B;
+  --duo-red-dark: #EA2B2B;
+  --duo-red-light: #FFDFE0;
+  
+  --duo-purple: #CE82FF;
+  --duo-purple-dark: #A557DF;
+  --duo-purple-light: #F4E5FF;
+  
+  --duo-orange: #FF9600;
+  --duo-orange-dark: #CC7800;
+
+  /* Neutrals & Surfaces */
+  --duo-bg: #FFFFFF;
+  --duo-bg-soft: #F7F7F7;
+  --duo-card-bg: #FFFFFF;
+  --duo-border: #E5E5E5;
+  --duo-border-dark: #CECECE;
+  
+  /* Typography Colors */
+  --duo-text-main: #3C3C3C;
+  --duo-text-muted: #777777;
+  --duo-text-light: #AFAFAF;
+
+  /* Radii & Shadows */
+  --duo-radius-sm: 12px;
+  --duo-radius-md: 16px;
+  --duo-radius-lg: 22px;
+  --duo-radius-full: 9999px;
+  
+  --duo-btn-3d: 0 4px 0;
+  --duo-card-3d: 0 4px 0 var(--duo-border);
+}
+
+/* Reset & Base Typography */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--duo-bg-soft);
+  color: var(--duo-text-main);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  padding-bottom: 72px; /* space for mobile bar */
+}
+
+/* Header & Gamified Status Bar */
+.duo-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #FFFFFF;
+  border-bottom: 2px solid var(--duo-border);
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.brand-title {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--duo-green);
+  letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.brand-title .brand-pro {
+  background: var(--duo-blue);
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 2px 7px;
+  border-radius: 8px;
+  box-shadow: 0 2px 0 var(--duo-blue-dark);
+  text-transform: uppercase;
+}
+
+.brand-quoly {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--duo-text-muted);
+  background: var(--duo-bg-soft);
+  padding: 4px 10px;
+  border-radius: var(--duo-radius-full);
+  border: 1px solid var(--duo-border);
+}
+
+/* Duolingo Gamification Pills (Streak, Gems, XP, Hearts) */
+.gamification-strip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.game-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--duo-radius-full);
+  font-weight: 800;
+  font-size: 14px;
+  border: 2px solid var(--duo-border);
+  background: #FFFFFF;
+  transition: transform 0.15s ease;
+  user-select: none;
+}
+
+.game-pill:hover {
+  transform: translateY(-2px);
+}
+
+.game-pill.pill-flame {
+  color: var(--duo-orange-dark);
+  border-color: #FFE0B2;
+  background: #FFF8E1;
+}
+
+.game-pill.pill-gem {
+  color: var(--duo-blue-dark);
+  border-color: #B3E5FC;
+  background: #E1F5FE;
+}
+
+.game-pill.pill-xp {
+  color: #B28704;
+  border-color: #FFF9C4;
+  background: #FFFDE7;
+}
+
+.game-pill.pill-role {
+  background: #F3E8FF;
+  border-color: #E9D5FF;
+  color: var(--duo-purple-dark);
+  cursor: pointer;
+}
+
+/* Sound and Actions */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-icon-duo {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--duo-radius-md);
+  border: 2px solid var(--duo-border);
+  background: #FFFFFF;
+  box-shadow: 0 3px 0 var(--duo-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--duo-text-muted);
+  transition: all 0.1s ease;
+}
+
+.btn-icon-duo:hover {
+  background: var(--duo-bg-soft);
+  color: var(--duo-text-main);
+}
+
+.btn-icon-duo:active {
+  transform: translateY(3px);
+  box-shadow: none;
+}
+
+/* Duolingo Navigation Segmented Ribbons */
+.nav-ribbon {
+  background: #FFFFFF;
+  border-bottom: 2px solid var(--duo-border);
+  padding: 8px 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.nav-ribbon::-webkit-scrollbar {
+  display: none;
+}
+
+.duo-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: var(--duo-radius-md);
+  font-weight: 800;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: transparent;
+  color: var(--duo-text-muted);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  white-space: nowrap;
+}
+
+.duo-tab:hover {
+  background: var(--duo-bg-soft);
+  color: var(--duo-text-main);
+}
+
+.duo-tab.active {
+  background: var(--duo-blue-light);
+  color: var(--duo-blue);
+  border-color: var(--duo-blue);
+  box-shadow: 0 3px 0 var(--duo-blue);
+}
+
+/* 3D Tactile Duolingo Buttons */
+.btn-duo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: var(--duo-radius-md);
+  font-weight: 900;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.08s ease;
+  user-select: none;
+  text-decoration: none;
+}
+
+.btn-duo:active {
+  transform: translateY(4px);
+}
+
+/* Green (Primary Duo) */
+.btn-duo-green {
+  background-color: var(--duo-green);
+  box-shadow: 0 4px 0 var(--duo-green-dark);
+  color: #FFFFFF;
+}
+.btn-duo-green:hover {
+  filter: brightness(1.06);
+}
+.btn-duo-green:active {
+  box-shadow: 0 0 0 var(--duo-green-dark);
+}
+
+/* Blue (Action) */
+.btn-duo-blue {
+  background-color: var(--duo-blue);
+  box-shadow: 0 4px 0 var(--duo-blue-dark);
+  color: #FFFFFF;
+}
+.btn-duo-blue:hover {
+  filter: brightness(1.06);
+}
+.btn-duo-blue:active {
+  box-shadow: 0 0 0 var(--duo-blue-dark);
+}
+
+/* Yellow / Gold (Milestone) */
+.btn-duo-yellow {
+  background-color: var(--duo-yellow);
+  box-shadow: 0 4px 0 var(--duo-yellow-dark);
+  color: #FFFFFF;
+}
+.btn-duo-yellow:hover {
+  filter: brightness(1.06);
+}
+.btn-duo-yellow:active {
+  box-shadow: 0 0 0 var(--duo-yellow-dark);
+}
+
+/* Red (Emergency / Delete) */
+.btn-duo-red {
+  background-color: var(--duo-red);
+  box-shadow: 0 4px 0 var(--duo-red-dark);
+  color: #FFFFFF;
+}
+.btn-duo-red:hover {
+  filter: brightness(1.06);
+}
+.btn-duo-red:active {
+  box-shadow: 0 0 0 var(--duo-red-dark);
+}
+
+/* Purple (Creative / Special) */
+.btn-duo-purple {
+  background-color: var(--duo-purple);
+  box-shadow: 0 4px 0 var(--duo-purple-dark);
+  color: #FFFFFF;
+}
+.btn-duo-purple:hover {
+  filter: brightness(1.06);
+}
+.btn-duo-purple:active {
+  box-shadow: 0 0 0 var(--duo-purple-dark);
+}
+
+/* White 3D button */
+.btn-duo-white {
+  background-color: #FFFFFF;
+  border: 2px solid var(--duo-border);
+  box-shadow: 0 4px 0 var(--duo-border-dark);
+  color: var(--duo-text-main);
+}
+.btn-duo-white:hover {
+  background-color: var(--duo-bg-soft);
+}
+.btn-duo-white:active {
+  box-shadow: 0 0 0 var(--duo-border-dark);
+}
+
+/* Chunky Rounded Cards */
+.duo-card {
+  background: #FFFFFF;
+  border: 2px solid var(--duo-border);
+  border-radius: var(--duo-radius-lg);
+  box-shadow: 0 4px 0 var(--duo-border);
+  padding: 24px;
+  position: relative;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.duo-card:hover {
+  box-shadow: 0 6px 0 var(--duo-border-dark);
+}
+
+/* ====================================================================
+   VIEW 1: DUOLINGO MISSION PATH (INTRO & OPERATIONAL ROADMAP)
+   ==================================================================== */
+.intro-container {
+  max-width: 1100px;
+  margin: 32px auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.hero-mascot-banner {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  background: #FFFFFF;
+  border: 2px solid var(--duo-border);
+  border-radius: var(--duo-radius-lg);
+  box-shadow: 0 6px 0 var(--duo-border);
+  padding: 32px 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.mascot-avatar-large {
+  flex-shrink: 0;
+  animation: floatMascot 3s ease-in-out infinite;
+}
+
+@keyframes floatMascot {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Duolingo Speech Bubble */
+.duo-speech-bubble {
+  position: relative;
+  background: var(--duo-bg-soft);
+  border: 2px solid var(--duo-border);
+  border-radius: var(--duo-radius-lg);
+  padding: 20px 24px;
+  flex-grow: 1;
+}
+
+.duo-speech-bubble::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -14px;
+  transform: translateY(-50%);
+  border-width: 8px 14px 8px 0;
+  border-style: solid;
+  border-color: transparent var(--duo-border) transparent transparent;
+  display: block;
+}
+
+.duo-speech-bubble::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -11px;
+  transform: translateY(-50%);
+  border-width: 7px 12px 7px 0;
+  border-style: solid;
+  border-color: transparent var(--duo-bg-soft) transparent transparent;
+  display: block;
+}
+
+.bubble-title {
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--duo-text-main);
+  margin-bottom: 6px;
+}
+
+.bubble-desc {
+  font-size: 15px;
+  color: var(--duo-text-muted);
+  font-weight: 600;
+}
+
+/* Duolingo Interactive Road / Path Section */
+.roadmap-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: 40px 0;
+}
+
+.section-badge-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.section-badge-header h2 {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--duo-text-main);
+}
+
+.section-badge-header p {
+  font-size: 16px;
+  color: var(--duo-text-muted);
+  font-weight: 700;
+}
+
+/* Winding Path Grid */
+.duo-path-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+}
+
+.path-node-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  position: relative;
+}
+
+/* Offset nodes left/center/right to mimic Duolingo curve */
+.path-node-row:nth-child(even) {
+  transform: translateX(45px);
+}
+.path-node-row:nth-child(odd):not(:first-child) {
+  transform: translateX(-45px);
+}
+
+.path-node-btn {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  position: relative;
+  box-shadow: 0 8px 0 rgba(0,0,0,0.18);
+}
+
+.path-node-btn:active {
+  transform: translateY(6px);
+  box-shadow: 0 2px 0 rgba(0,0,0,0.18);
+}
+
+.path-node-btn.node-green {
+  background: var(--duo-green);
+  box-shadow: 0 8px 0 var(--duo-green-dark);
+  color: #FFFFFF;
+}
+
+.path-node-btn.node-blue {
+  background: var(--duo-blue);
+  box-shadow: 0 8px 0 var(--duo-blue-dark);
+  color: #FFFFFF;
+}
+
+.path-node-btn.node-gold {
+  background: var(--duo-yellow);
+  box-shadow: 0 8px 0 var(--duo-yellow-dark);
+  color: #FFFFFF;
+}
+
+.path-node-btn.node-purple {
+  background: var(--duo-purple);
+  box-shadow: 0 8px 0 var(--duo-purple-dark);
+  color: #FFFFFF;
+}
+
+.path-node-btn.node-red {
+  background: var(--duo-red);
+  box-shadow: 0 8px 0 var(--duo-red-dark);
+  color: #FFFFFF;
+}
+
+.node-number-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #FFFFFF;
+  border: 2px solid var(--duo-border);
+  color: var(--duo-text-main);
+  font-size: 12px;
+  font-weight: 900;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.node-info-card {
+  position: absolute;
+  left: calc(100% + 20px);
+  width: 240px;
+  background: #FFFFFF;
+  border: 2px solid var(--duo-border);
+  border-radius: var(--duo-radius-md);
+  box-shadow: 0 4px 0 var(--duo-border);
+  padding: 12px 16px;
+  pointer-events: none;
+}
+
+.path-node-row:nth-child(even) .node-info-card {
+  left: auto;
+  right: calc(100% + 20px);
+}
+
+.node-info-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--duo-text-main);
+}
+
+.node-info-xp {
+  font-size: 12px;
+  font-weight: 900;
+  color: var(--duo-yellow-dark);
+  margin-top: 2px;
+}
+
+/* Live Operational Showcase Simulator (Job moving creation to finish) */
+.simulator-box {
+  background: #FFFFFF;
+  border: 2px solid var(--duo-border);
+  border-radius: var(--duo-radius-lg);
+  box-shadow: 0 6px 0 var(--duo-border);
+  padding: 32px;
+}
+
+.sim-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.sim-steps-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  margin: 32px 0 24px;
+}
+
+.sim-step-point {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.sim-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 3px solid var(--duo-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  color: var(--duo-text-muted);
+  transition: all 0.2s ease;
+}
+
+.sim-step-point.active .sim-circle {
+  background: var(--duo-green);
+  border-color: var(--duo-green-dark);
+  color: #FFFFFF;
+  box-shadow: 0 4px 0 var(--duo-green-dark);
+  transform: scale(1.1);
+}
+
+.sim-step-point.done .sim-circle {
+  background: var(--duo-blue);
+  border-color: var(--duo-blue-dark);
+  color: #FFFFFF;
+}
+
+.sim-label {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--duo-text-muted);
+}
+
+.sim-step-point.active .sim-label {
+  color: var(--duo-text-main);
+}
+
+.sim-content-card {
+  background: var(--duo-bg-soft);
+  border: 2px solid var(--duo-border);
+  border-radius: var(--duo-radius-md);
+  padding: 24px;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+/* ====================================================================
+   VIEW 2: DISPATCHER WORK ORDERS & KPI BOARD
+   ==================================================================== */
+.view-container {
+  max-width: 1280px;
+  margin: 28px auto;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* KPI 4-Card Grid */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
+
+.kpi-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.kpi-icon-box {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--duo-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.kpi-val {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--duo-text-main);
+  line-height: 1.1;
+}
+
+.kpi-lbl {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--duo-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Filter Strip */
+.filter-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.search-input-duo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #FFFFFF;
+  border: 2px solid var(--duo-border);
+  border-radius: var(--duo-radius-md);
+  padding: 10px 16px;
+  width: 320px;
+}
+
+.search-input-duo input {
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--duo-text-main);
+  width: 100%;
+}
+
+/* Work Orders Table */
+.duo-table-wrapper {
+  background: #FFFFFF;
+  border: 2px solid var(--duo-border);
+  border-radius: var(--duo-radius-lg);
+  box-shadow: 0 4px 0 var(--duo-border);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.duo-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.duo-table th {
+  background: var(--duo-bg-soft);
+  padding: 14px 18px;
+  font-size: 13px;
+  font-weight: 900;
+  color: var(--duo-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  border-bottom: 2px solid var(--duo-border);
+}
+
+.duo-table td {
+  padding: 16px 18px;
+  font-size: 14px;
+  font-weight: 700;
+  border-bottom: 1px solid var(--duo-border);
+  vertical-align: middle;
+}
+
+.duo-table tr:hover {
+  background: #FAFDF7;
+}
+
+/* Priority & Status Badges */
+.prio-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: var(--duo-radius-full);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.prio-emergency { background: #FFDFE0; color: var(--duo-red-dark); }
+.prio-high { background: #FFE0B2; color: var(--duo-orange-dark); }
+.prio-medium { background: #FFF9C4; color: #B28704; }
+.prio-normal { background: var(--duo-bg-soft); color: var(--duo-text-muted); }
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: var(--duo-radius-full);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.status-onsite { background: #D7FFB8; color: var(--duo-green-dark); }
+.status-route { background: #DDF4FF; color: var(--duo-blue-dark); }
+.status-done { background: #E2E8F0; color: #475569; }
+.status-sched { background: #F3E8FF; color: var(--duo-purple-dark); }
+.status-available { background: #D7FFB8; color: var(--duo-green-dark); }
+
+/* ====================================================================
+   VIEW 3: DRAG & DROP TECHNICIAN SCHEDULING BOARD
+   ==================================================================== */
+.schedule-grid-container {
+  display: flex;
+  flex-direction: column;
+  background: #FFFFFF;
+  border: 2px solid var(--duo-border);
+  border-radius: var(--duo-radius-lg);
+  box-shadow: 0 4px 0 var(--duo-border);
+  overflow-x: auto;
+}
+
+.schedule-header-row {
+  display: grid;
+  grid-template-columns: 240px repeat(5, 1fr);
+  background: var(--duo-bg-soft);
+  border-bottom: 2px solid var(--duo-border);
+  font-weight: 900;
+  font-size: 13px;
+  text-transform: uppercase;
+  color: var(--duo-text-muted);
+}
+
+.schedule-slot-header {
+  padding: 14px 16px;
+  text-align: center;
+  border-left: 1px solid var(--duo-border);
+}
+
+.schedule-tech-row {
+  display: grid;
+  grid-template-columns: 240px repeat(5, 1fr);
+  border-bottom: 1px solid var(--duo-border);
+  min-height: 110px;
+}
+
+.tech-info-cell {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #FAFAFA;
+}
+
+.tech-avatar-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 16px;
+  box-shadow: 0 3px 0 rgba(0,0,0,0.15);
+  flex-shrink: 0;
+}
+
+.slot-dropzone {
+  padding: 8px;
+  border-left: 1px solid var(--duo-border);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  transition: background 0.15s ease;
+}
+
+.slot-dropzone.drag-over {
+  background: #E8F8D8;
+}
+
+.job-drag-card {
+  width: 100%;
+  background: var(--duo-blue-light);
+  border: 2px solid var(--duo-blue);
+  box-shadow: 0 3px 0 var(--duo-blue-dark);
+  border-radius: var(--duo-radius-md);
+  padding: 8px 10px;
+  cursor: grab;
+  user-select: none;
+  transition: transform 0.1s ease;
+}
+
+.job-drag-card:active {
+  cursor: grabbing;
+  transform: scale(0.98);
+}
+
+/* ====================================================================
+   VIEW 4: TECHNICIAN MOBILE APP SIMULATION (WITH GPS & CANVAS)
+   ==================================================================== */
+.mobile-app-layout {
+  display: flex;
+  gap: 36px;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* iPhone Physical Chassis */
+.iphone-frame {
+  width: 380px;
+  height: 750px;
+  background: #1A1A1A;
+  border-radius: 48px;
+  padding: 12px;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.iphone-screen {
+  background: #FFFFFF;
+  border-radius: 36px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Dynamic Island */
+.dynamic-island {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 24px;
+  background: #000000;
+  border-radius: 20px;
+  z-index: 50;
+}
+
+.mobile-content {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 42px 18px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mobile-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* Signature Pad Canvas */
+.sig-canvas-box {
+  background: #FFFFFF;
+  border: 2px dashed var(--duo-border-dark);
+  border-radius: var(--duo-radius-md);
+  position: relative;
+  overflow: hidden;
+  height: 140px;
+}
+
+#signature-canvas {
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+  background: transparent;
+  touch-action: none;
+}
+
+/* ====================================================================
+   VIEW 5: ASSET & INDUSTRIAL EQUIPMENT REGISTRY
+   ==================================================================== */
+.asset-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.asset-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.asset-health-bar {
+  height: 8px;
+  background: var(--duo-border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.asset-health-fill {
+  height: 100%;
+  background: var(--duo-green);
+  border-radius: 4px;
+}
+
+/* ====================================================================
+   VIEW 6: INVOICES & STRIPE SETTLEMENT
+   ==================================================================== */
+.invoice-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.inv-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 2px solid var(--duo-border);
+  padding-bottom: 16px;
+}
+
+/* ====================================================================
+   VIEW 7: AUDIT LOG & LIVE GOVERNANCE STREAM
+   ==================================================================== */
+.audit-stream {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.audit-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #FFFFFF;
+  border: 2px solid var(--duo-border);
+  border-radius: var(--duo-radius-md);
+  padding: 14px 18px;
+}
+
+/* ====================================================================
+   MOBILE FLOATING DOCK & RESPONSIVENESS
+   ==================================================================== */
+.mobile-bottom-dock {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #FFFFFF;
+  border-top: 2px solid var(--duo-border);
+  padding: 8px 12px calc(8px + env(safe-area-inset-bottom, 0px));
+  z-index: 200;
+  justify-content: space-around;
+  box-shadow: 0 -4px 12px rgba(0,0,0,0.06);
+}
+
+.dock-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  color: var(--duo-text-muted);
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.dock-item.active {
+  color: var(--duo-green);
+}
+
+/* Global Footer */
+.duo-footer {
+  margin-top: auto;
+  background: #FFFFFF;
+  border-top: 2px solid var(--duo-border);
+  padding: 24px;
+  text-align: center;
+  font-weight: 700;
+  color: var(--duo-text-muted);
+  font-size: 14px;
+}
+
+/* Media Queries */
+@media (max-width: 860px) {
+  .hero-mascot-banner {
+    flex-direction: column;
+    text-align: center;
+    padding: 24px;
+  }
+  .duo-speech-bubble::before,
+  .duo-speech-bubble::after {
+    display: none;
+  }
+  .nav-ribbon {
+    display: none; /* replaced by mobile dock */
+  }
+  .mobile-bottom-dock {
+    display: flex;
+  }
+  .gamification-strip {
+    display: none;
+  }
+  .node-info-card {
+    display: none;
+  }
+  .path-node-row:nth-child(even),
+  .path-node-row:nth-child(odd) {
+    transform: none;
+  }
+}

@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>FlowPilot Operations – Enterprise Field Service SaaS by QuolyTech</title>
+  <meta name="description" content="A multi-tenant field service & operations SaaS platform for managing technicians, work orders, assets, scheduling, GPS check-ins, and Stripe billing.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/duo-ui.css">
+</head>
+<body>
+
+  <!-- ====================================================================
+       DUOLINGO GAMIFIED TOP HEADER
+       ==================================================================== -->
+  <header class="duo-header" id="app-header">
+    <div class="header-left">
+      <div class="brand-badge" id="brand-badge">
+        <div id="mascot-header-icon"></div>
+        <div class="brand-title">
+          FlowPilot <span class="brand-pro">PRO</span>
+        </div>
+      </div>
+      <div class="brand-quoly">by QuolyTech</div>
+    </div>
+
+    <!-- Duolingo Streak, Gems, XP & Role Pills -->
+    <div class="gamification-strip" id="gamification-strip">
+      <div class="game-pill pill-flame" id="pill-streak" title="14-Day Zero-SLA-Breach Streak!">
+        <div id="icon-flame"></div>
+        <span id="label-streak">14</span>
+      </div>
+      <div class="game-pill pill-gem" id="pill-gems" title="FlowCoins Rewards">
+        <div id="icon-gem"></div>
+        <span id="label-gems">420</span>
+      </div>
+      <div class="game-pill pill-xp" id="pill-xp" title="Total Operations XP">
+        <div id="icon-zap"></div>
+        <span id="label-xp">4,850 XP</span>
+      </div>
+      <button class="game-pill pill-role" id="btn-toggle-role" title="Switch Perspective">
+        <div id="icon-role-user"></div>
+        <span id="label-current-role">Role: Dispatcher</span>
+      </button>
+    </div>
+
+    <!-- Header Actions (Sound & Quick Create) -->
+    <div class="header-actions">
+      <button class="btn-icon-duo" id="btn-sound-toggle" title="Toggle Sound Effects">
+        <div id="icon-sound"></div>
+      </button>
+      <button class="btn-duo btn-duo-green" id="btn-header-create-job">
+        <div id="icon-header-plus"></div>
+        <span>New Job</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ====================================================================
+       DUOLINGO NAVIGATION RIBBON (SEGMENTED TABS)
+       ==================================================================== -->
+  <nav class="nav-ribbon" id="desktop-nav">
+    <button class="duo-tab active" id="tab-intro" data-view="view-intro">
+      <div id="icon-tab-intro"></div>
+      <span>Mission Path</span>
+    </button>
+    <button class="duo-tab" id="tab-dispatch" data-view="view-dispatch">
+      <div id="icon-tab-dispatch"></div>
+      <span>Work Orders</span>
+    </button>
+    <button class="duo-tab" id="tab-schedule" data-view="view-schedule">
+      <div id="icon-tab-schedule"></div>
+      <span>Fleet Schedule</span>
+    </button>
+    <button class="duo-tab" id="tab-mobile" data-view="view-mobile">
+      <div id="icon-tab-mobile"></div>
+      <span>Technician App</span>
+    </button>
+    <button class="duo-tab" id="tab-assets" data-view="view-assets">
+      <div id="icon-tab-assets"></div>
+      <span>Asset History</span>
+    </button>
+    <button class="duo-tab" id="tab-invoices" data-view="view-invoices">
+      <div id="icon-tab-invoices"></div>
+      <span>Invoices & Stripe</span>
+    </button>
+    <button class="duo-tab" id="tab-audit" data-view="view-audit">
+      <div id="icon-tab-audit"></div>
+      <span>Audit Trail</span>
+    </button>
+  </nav>
+
+  <!-- ====================================================================
+       VIEW 1: DUOLINGO MISSION PATH (INTRO ROADMAP & WORKFLOW SIMULATOR)
+       ==================================================================== -->
+  <main id="view-intro" class="intro-container">
+    <!-- Hero Mascot Speech Banner -->
+    <section class="hero-mascot-banner" id="hero-banner">
+      <div class="mascot-avatar-large" id="hero-mascot-graphic"></div>
+      <div class="duo-speech-bubble" id="hero-speech-bubble">
+        <h1 class="bubble-title" id="bubble-heading">Welcome to FlowPilot Operations!</h1>
+        <p class="bubble-desc" id="bubble-text">
+          Replace scattered phone calls, lost paper tickets, and spreadsheets with an all-in-one field service powerhouse. Complete the operations quest below to explore dispatching, GPS check-ins, and Stripe billing!
+        </p>
+        <div style="margin-top: 14px; display: flex; gap: 12px; flex-wrap: wrap;">
+          <button class="btn-duo btn-duo-green" id="btn-hero-start-quest">
+            <span>Explore Mission Path</span>
+          </button>
+          <button class="btn-duo btn-duo-white" id="btn-hero-launch-mobile">
+            <span>Open Tech Mobile App</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Duolingo Winding Mission Path (Interactive Level Progression) -->
+    <section class="roadmap-section" id="roadmap-section">
+      <div class="section-badge-header">
+        <h2>Field Service Operational Quest</h2>
+        <p>Click any milestone to inspect operational stages and unlock work credits!</p>
+      </div>
+
+      <div class="duo-path-wrapper" id="path-nodes-container">
+        <!-- Path Nodes populated dynamically via JavaScript -->
+      </div>
+    </section>
+
+    <!-- Interactive Live Workflow Player (Job Creation to Invoicing) -->
+    <section class="simulator-box" id="workflow-simulator-box">
+      <div class="sim-header">
+        <div>
+          <h2 style="font-size: 22px; font-weight: 900;">Live Job Lifecycle Simulator</h2>
+          <p style="font-size: 14px; color: var(--duo-text-muted); font-weight: 700;">
+            Watch a job transition from customer intake to GPS check-in, repair, and Stripe payment.
+          </p>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <button class="btn-duo btn-duo-blue" id="btn-sim-play" style="padding: 8px 16px;">
+            <div id="icon-sim-play"></div>
+            <span id="sim-play-text">Auto Play</span>
+          </button>
+          <button class="btn-duo btn-duo-white" id="btn-sim-reset" style="padding: 8px 14px;">
+            <div id="icon-sim-reset"></div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step Points Ribbon -->
+      <div class="sim-steps-bar" id="sim-steps-bar">
+        <div class="sim-step-point active" data-step="1" id="sim-step-1">
+          <div class="sim-circle">1</div>
+          <span class="sim-label">Intake</span>
+        </div>
+        <div class="sim-step-point" data-step="2" id="sim-step-2">
+          <div class="sim-circle">2</div>
+          <span class="sim-label">Dispatch</span>
+        </div>
+        <div class="sim-step-point" data-step="3" id="sim-step-3">
+          <div class="sim-circle">3</div>
+          <span class="sim-label">GPS Arrival</span>
+        </div>
+        <div class="sim-step-point" data-step="4" id="sim-step-4">
+          <div class="sim-circle">4</div>
+          <span class="sim-label">Sign-Off</span>
+        </div>
+        <div class="sim-step-point" data-step="5" id="sim-step-5">
+          <div class="sim-circle">5</div>
+          <span class="sim-label">Invoiced</span>
+        </div>
+      </div>
+
+      <!-- Live Simulator Content Box -->
+      <div class="sim-content-card" id="sim-card-content">
+        <!-- Content injected dynamically -->
+      </div>
+    </section>
+  </main>
+
+  <!-- ====================================================================
+       VIEW 2: DISPATCHER WORK ORDERS & KPI BOARD
+       ==================================================================== -->
+  <main id="view-dispatch" class="view-container" style="display: none;">
+    <!-- KPI Row -->
+    <div class="kpi-grid">
+      <div class="duo-card kpi-card">
+        <div class="kpi-icon-box" style="background: #E8F8D8; color: var(--duo-green);">
+          <div id="icon-kpi-active"></div>
+        </div>
+        <div>
+          <div class="kpi-val" id="kpi-active-jobs">34</div>
+          <div class="kpi-lbl">Active Work Orders</div>
+        </div>
+      </div>
+      <div class="duo-card kpi-card">
+        <div class="kpi-icon-box" style="background: #E1F5FE; color: var(--duo-blue);">
+          <div id="icon-kpi-vans"></div>
+        </div>
+        <div>
+          <div class="kpi-val" id="kpi-vans-deployed">12</div>
+          <div class="kpi-lbl">Field Vans Deployed</div>
+        </div>
+      </div>
+      <div class="duo-card kpi-card">
+        <div class="kpi-icon-box" style="background: #FFF8E1; color: var(--duo-orange-dark);">
+          <div id="icon-kpi-sla"></div>
+        </div>
+        <div>
+          <div class="kpi-val" id="kpi-sla-score">98.4%</div>
+          <div class="kpi-lbl">On-Time SLA Rate</div>
+        </div>
+      </div>
+      <div class="duo-card kpi-card">
+        <div class="kpi-icon-box" style="background: #F3E8FF; color: var(--duo-purple-dark);">
+          <div id="icon-kpi-revenue"></div>
+        </div>
+        <div>
+          <div class="kpi-val" id="kpi-revenue">$38.4K</div>
+          <div class="kpi-lbl">Invoiced This Week</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search & Filters -->
+    <div class="filter-strip">
+      <div class="search-input-duo">
+        <div id="icon-search-input"></div>
+        <input type="text" id="input-search-jobs" placeholder="Search customer, address, tech...">
+      </div>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <select id="filter-priority" class="btn-duo btn-duo-white" style="padding: 10px 14px; text-transform: none;">
+          <option value="all">All Priorities</option>
+          <option value="Emergency">Emergency (Critical)</option>
+          <option value="High">High Priority</option>
+          <option value="Medium">Medium</option>
+          <option value="Normal">Normal</option>
+        </select>
+        <button class="btn-duo btn-duo-green" id="btn-table-new-job">
+          <div id="icon-table-plus"></div>
+          <span>Create Work Order</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Table of Work Orders -->
+    <div class="duo-table-wrapper">
+      <table class="duo-table">
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Customer & Address</th>
+            <th>Priority</th>
+            <th>Assigned Tech</th>
+            <th>Status</th>
+            <th>Amount</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="jobs-table-body">
+          <!-- Populated via JavaScript -->
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- ====================================================================
+       VIEW 3: DRAG & DROP TECHNICIAN SCHEDULING BOARD
+       ==================================================================== -->
+  <main id="view-schedule" class="view-container" style="display: none;">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+      <div>
+        <h2 style="font-size: 26px; font-weight: 900;">Fleet Scheduling Board</h2>
+        <p style="color: var(--duo-text-muted); font-weight: 700;">Drag or click jobs to reassign technicians and time slots in real time.</p>
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <span class="game-pill pill-flame">100% Slot Utilization</span>
+        <button class="btn-duo btn-duo-blue" id="btn-auto-schedule-ai" style="padding: 8px 16px;">
+          <span>AI Auto-Optimize Routes</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Scheduling Board Grid -->
+    <div class="schedule-grid-container" id="schedule-board-wrapper">
+      <div class="schedule-header-row">
+        <div style="padding: 14px 16px;">Technician</div>
+        <div class="schedule-slot-header">08:00 AM</div>
+        <div class="schedule-slot-header">10:00 AM</div>
+        <div class="schedule-slot-header">12:00 PM</div>
+        <div class="schedule-slot-header">02:00 PM</div>
+        <div class="schedule-slot-header">04:00 PM</div>
+      </div>
+      <div id="schedule-technicians-list">
+        <!-- Rendered via JavaScript -->
+      </div>
+    </div>
+  </main>
+
+  <!-- ====================================================================
+       VIEW 4: TECHNICIAN MOBILE APP SIMULATION (WITH GPS & CANVAS SIGNATURE)
+       ==================================================================== -->
+  <main id="view-mobile" class="view-container" style="display: none;">
+    <div class="mobile-app-layout">
+      <!-- Phone Frame -->
+      <div class="iphone-frame">
+        <div class="dynamic-island"></div>
+        <div class="iphone-screen">
+          <!-- App Header inside phone -->
+          <div style="padding: 12px 16px; background: #FFFFFF; border-bottom: 2px solid var(--duo-border); display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <div id="phone-mascot-mini"></div>
+              <span style="font-weight: 900; font-size: 14px; color: var(--duo-green);">FlowTech Mobile</span>
+            </div>
+            <span class="status-badge status-onsite" id="phone-top-status">On Site</span>
+          </div>
+
+          <!-- Phone Scrollable Body -->
+          <div class="mobile-content">
+            <!-- Job Card -->
+            <div class="duo-card" style="padding: 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                <span class="prio-badge prio-emergency">Emergency</span>
+                <span style="font-weight: 900; font-size: 13px; color: var(--duo-text-muted);">WO-8401</span>
+              </div>
+              <h3 style="font-size: 16px; font-weight: 900; margin: 8px 0 4px;" id="phone-job-title">
+                Carrier 50-Ton Rooftop Chiller
+              </h3>
+              <p style="font-size: 13px; color: var(--duo-text-muted); font-weight: 700;">
+                Apex Commercial Towers • Roof B
+              </p>
+            </div>
+
+            <!-- GPS Check-In Module -->
+            <div class="duo-card" style="padding: 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span style="font-weight: 900; font-size: 14px;">GPS Geofence</span>
+                <span class="status-badge status-onsite" id="gps-status-badge">Radius Verified</span>
+              </div>
+              <p style="font-size: 12px; color: var(--duo-text-muted); margin-bottom: 12px;" id="gps-coords-display">
+                Lat: 37.7749° N, Lng: 122.4194° W (450 Mission St)
+              </p>
+              <button class="btn-duo btn-duo-blue" id="btn-phone-gps" style="width: 100%; padding: 10px;">
+                <div id="icon-phone-gps"></div>
+                <span id="btn-phone-gps-text">Update GPS Telemetry</span>
+              </button>
+            </div>
+
+            <!-- Field Photo Upload Simulator -->
+            <div class="duo-card" style="padding: 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span style="font-weight: 900; font-size: 14px;">Field Photo Capture</span>
+                <span style="font-size: 12px; font-weight: 800; color: var(--duo-green);">2 Uploaded</span>
+              </div>
+              <div style="display: flex; gap: 8px; margin-bottom: 12px;" id="phone-photo-gallery">
+                <!-- Injected photo thumbnails -->
+              </div>
+              <button class="btn-duo btn-duo-yellow" id="btn-phone-camera" style="width: 100%; padding: 10px;">
+                <div id="icon-phone-camera"></div>
+                <span>Take Diagnostic Photo</span>
+              </button>
+            </div>
+
+            <!-- Digital Signature Pad -->
+            <div class="duo-card" style="padding: 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span style="font-weight: 900; font-size: 14px;">Client Sign-Off</span>
+                <button id="btn-clear-sig" style="background: none; border: none; color: var(--duo-red); font-weight: 800; font-size: 12px; cursor: pointer;">
+                  Clear Pad
+                </button>
+              </div>
+              <p style="font-size: 11px; color: var(--duo-text-muted); margin-bottom: 6px;">
+                Sign with finger or mouse below:
+              </p>
+              <div class="sig-canvas-box">
+                <canvas id="signature-canvas" width="310" height="140"></canvas>
+              </div>
+            </div>
+
+            <!-- Complete Work Order Button -->
+            <button class="btn-duo btn-duo-green" id="btn-phone-complete-job" style="width: 100%; padding: 14px;">
+              <div id="icon-phone-check"></div>
+              <span>Submit & Complete Job (+250 XP)</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Explanatory Side Panel -->
+      <div style="flex: 1; min-width: 300px; max-width: 500px; display: flex; flex-direction: column; gap: 20px;">
+        <div class="duo-card">
+          <h2 style="font-size: 22px; font-weight: 900; margin-bottom: 10px;">Field Technician Mobility</h2>
+          <p style="color: var(--duo-text-muted); font-weight: 700; line-height: 1.6; margin-bottom: 16px;">
+            FlowPilot’s technician application works seamlessly on iOS, Android, and ruggedized field tablets. Technicians can view job requirements, navigate with turn-by-turn routing, take high-resolution diagnostic photos, capture customer signatures, and generate instant proof of work.
+          </p>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div style="display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 14px;">
+              <span class="status-badge status-onsite">Geofenced</span>
+              <span>Prevents fraudulent remote check-ins.</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 14px;">
+              <span class="status-badge status-route">Offline First</span>
+              <span>Caches photos & signatures when in underground basements.</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 14px;">
+              <span class="status-badge status-sched">Stripe Ready</span>
+              <span>Triggers instant quote-to-invoice upon sign-off.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ====================================================================
+       VIEW 5: ASSET & INDUSTRIAL EQUIPMENT REGISTRY
+       ==================================================================== -->
+  <main id="view-assets" class="view-container" style="display: none;">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+      <div>
+        <h2 style="font-size: 26px; font-weight: 900;">Industrial Equipment & Asset Registry</h2>
+        <p style="color: var(--duo-text-muted); font-weight: 700;">Track warranties, maintenance logs, operating specifications, and health scores.</p>
+      </div>
+      <button class="btn-duo btn-duo-green" id="btn-register-asset">
+        <div id="icon-asset-plus"></div>
+        <span>Register New Asset</span>
+      </button>
+    </div>
+
+    <!-- Asset Cards Grid -->
+    <div class="asset-grid" id="asset-cards-grid">
+      <!-- Populated via JavaScript -->
+    </div>
+  </main>
+
+  <!-- ====================================================================
+       VIEW 6: INVOICES & STRIPE SETTLEMENT
+       ==================================================================== -->
+  <main id="view-invoices" class="view-container" style="display: none;">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+      <div>
+        <h2 style="font-size: 26px; font-weight: 900;">Billing, Invoices & Stripe Payments</h2>
+        <p style="color: var(--duo-text-muted); font-weight: 700;">Itemized parts, field labor, taxes, and cryptographic Stripe charge IDs.</p>
+      </div>
+      <button class="btn-duo btn-duo-blue" id="btn-export-all-invoices">
+        <div id="icon-inv-download"></div>
+        <span>Export Billing CSV</span>
+      </button>
+    </div>
+
+    <!-- Invoices List -->
+    <div style="display: flex; flex-direction: column; gap: 18px;" id="invoices-list-wrapper">
+      <!-- Rendered dynamically -->
+    </div>
+  </main>
+
+  <!-- ====================================================================
+       VIEW 7: LIVE AUDIT TRAIL & COMPLIANCE STREAM
+       ==================================================================== -->
+  <main id="view-audit" class="view-container" style="display: none;">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+      <div>
+        <h2 style="font-size: 26px; font-weight: 900;">Immutable Operational Audit Trail</h2>
+        <p style="color: var(--duo-text-muted); font-weight: 700;">Real-time event ledger recording technician arrivals, signatures, and payments.</p>
+      </div>
+      <span class="game-pill pill-xp">Live WebSocket Connected</span>
+    </div>
+
+    <div class="audit-stream" id="audit-log-stream">
+      <!-- Populated via JavaScript -->
+    </div>
+  </main>
+
+  <!-- ====================================================================
+       MODAL: CREATE NEW WORK ORDER
+       ==================================================================== -->
+  <div id="modal-create-job" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center; padding: 20px;">
+    <div class="duo-card" style="width: 100%; max-width: 540px; max-height: 90vh; overflow-y: auto;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h3 style="font-size: 20px; font-weight: 900;">Create Work Order</h3>
+        <button id="btn-close-modal" style="background: none; border: none; cursor: pointer; color: var(--duo-text-muted);">
+          <div id="icon-close-modal"></div>
+        </button>
+      </div>
+
+      <form id="form-create-job" style="display: flex; flex-direction: column; gap: 14px;">
+        <div>
+          <label style="display: block; font-weight: 800; font-size: 13px; margin-bottom: 4px;">Job Title</label>
+          <input type="text" id="input-job-title" required class="search-input-duo" style="width: 100%;" placeholder="e.g. Backup Generator Load Bank Testing">
+        </div>
+        <div>
+          <label style="display: block; font-weight: 800; font-size: 13px; margin-bottom: 4px;">Customer Name</label>
+          <input type="text" id="input-job-customer" required class="search-input-duo" style="width: 100%;" placeholder="e.g. Salesforce Tower Facilities">
+        </div>
+        <div>
+          <label style="display: block; font-weight: 800; font-size: 13px; margin-bottom: 4px;">Service Address</label>
+          <input type="text" id="input-job-address" required class="search-input-duo" style="width: 100%;" placeholder="e.g. 415 Mission St, San Francisco, CA">
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div>
+            <label style="display: block; font-weight: 800; font-size: 13px; margin-bottom: 4px;">Priority</label>
+            <select id="select-job-priority" class="search-input-duo" style="width: 100%;">
+              <option value="Emergency">Emergency (Critical)</option>
+              <option value="High" selected>High</option>
+              <option value="Medium">Medium</option>
+              <option value="Normal">Normal</option>
+            </select>
+          </div>
+          <div>
+            <label style="display: block; font-weight: 800; font-size: 13px; margin-bottom: 4px;">Assign Technician</label>
+            <select id="select-job-tech" class="search-input-duo" style="width: 100%;">
+              <option value="Marcus Vance">Marcus Vance (HVAC)</option>
+              <option value="Sarah Chen">Sarah Chen (Electrical)</option>
+              <option value="Liam Patel">Liam Patel (Plumbing)</option>
+              <option value="Elena Rostova">Elena Rostova (Controls)</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label style="display: block; font-weight: 800; font-size: 13px; margin-bottom: 4px;">Estimated Price ($)</label>
+          <input type="number" id="input-job-price" required class="search-input-duo" style="width: 100%;" value="950">
+        </div>
+
+        <button type="submit" class="btn-duo btn-duo-green" style="margin-top: 10px; width: 100%;">
+          <span>Publish & Dispatch Job</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       MODAL: DUOLINGO CELEBRATION / LEVEL UP
+       ==================================================================== -->
+  <div id="modal-celebration" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 2000; align-items: center; justify-content: center; padding: 20px;">
+    <div class="duo-card" style="width: 100%; max-width: 440px; text-align: center; padding: 36px 24px;">
+      <div id="modal-mascot-cheer" style="margin: 0 auto 16px;"></div>
+      <h2 style="font-size: 26px; font-weight: 900; color: var(--duo-green); margin-bottom: 6px;" id="modal-celeb-title">
+        Quest Milestone Complete!
+      </h2>
+      <p style="font-weight: 700; color: var(--duo-text-muted); margin-bottom: 20px;" id="modal-celeb-text">
+        Work Order WO-8401 has been signed by customer & settled via Stripe!
+      </p>
+      <div style="display: inline-flex; gap: 12px; margin-bottom: 24px;">
+        <span class="game-pill pill-xp">+250 XP</span>
+        <span class="game-pill pill-gem">+25 FlowCoins</span>
+      </div>
+      <button class="btn-duo btn-duo-green" id="btn-close-celeb" style="width: 100%;">
+        <span>Awesome! Continue</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       MOBILE BOTTOM FLOATING DOCK
+       ==================================================================== -->
+  <div class="mobile-bottom-dock" id="mobile-dock">
+    <button class="dock-item active" data-view="view-intro" id="dock-btn-intro">
+      <div id="icon-dock-intro"></div>
+      <span>Mission</span>
+    </button>
+    <button class="dock-item" data-view="view-dispatch" id="dock-btn-dispatch">
+      <div id="icon-dock-dispatch"></div>
+      <span>Orders</span>
+    </button>
+    <button class="dock-item" data-view="view-schedule" id="dock-btn-schedule">
+      <div id="icon-dock-schedule"></div>
+      <span>Schedule</span>
+    </button>
+    <button class="dock-item" data-view="view-mobile" id="dock-btn-mobile">
+      <div id="icon-dock-mobile"></div>
+      <span>Tech App</span>
+    </button>
+    <button class="dock-item" data-view="view-invoices" id="dock-btn-invoices">
+      <div id="icon-dock-invoices"></div>
+      <span>Invoices</span>
+    </button>
+  </div>
+
+  <!-- ====================================================================
+       GLOBAL FOOTER WITH QUOLYTECH ATTRIBUTION
+       ==================================================================== -->
+  <footer class="duo-footer" id="global-footer">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 8px;">
+      <div style="display: flex; align-items: center; gap: 8px; font-weight: 900; color: var(--duo-text-main);">
+        <span>FlowPilot Operations</span>
+        <span style="color: var(--duo-border-dark);">•</span>
+        <span style="color: var(--duo-green);">Enterprise Field Services SaaS</span>
+      </div>
+      <p style="font-size: 13px; color: var(--duo-text-muted);">
+        Architected by <strong style="color: var(--duo-text-main);">QuolyTech</strong> for multi-role field teams, dispatchers, and equipment managers.
+      </p>
+      <p style="font-size: 12px; color: var(--duo-text-light); margin-top: 4px;">
+        © 2026 QuolyTech. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/app.js"></script>
+</body>
+</html>
